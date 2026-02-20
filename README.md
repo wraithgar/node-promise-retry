@@ -14,7 +14,7 @@ There's already some modules that are able to retry functions that return promis
 
 ## Usage
 
-### retry(fn, [options])
+### retry(fn(retry, number, operation), [options])
 
 Calls `fn` until the returned promise ends up fulfilled or rejected with an error different than a `retry` error.
 The `options` argument is an object which maps to the [retry](https://github.com/tim-kos/node-retry) module options:
@@ -26,7 +26,11 @@ The `options` argument is an object which maps to the [retry](https://github.com
 - `randomize`: Randomizes the timeouts by multiplying with a factor between `1` to `2`. Default is `false`.
 
 
-The `fn` function will receive a `retry` function as its first argument that should be called with an error whenever you want to retry `fn`. The `retry` function will always throw an error.
+The `fn` function will be called with the following parameters:
+ - A `retry` function as its first argument that should be called with an error whenever you want to retry `fn`. The `retry` function will always throw an error.
+ - The current retry number being attempted
+ - The operation object itself from [retry](https://github.com/tim-kos/node-retry) which will allow you to call things like `operation.reset()`
+
 If there are retries left, it will throw a special `retry` error that will be handled internally to call `fn` again.
 If there are no retries left, it will throw the actual error passed to it.
 
