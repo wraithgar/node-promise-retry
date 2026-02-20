@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "npx standard",
     "lint:fix": "npx standard --fix",
-    "test": "node --test --experimental-test-coverage --test-timeout=3000 --test-coverage-lines=100 --test-coverage-functions=100 --test-coverage-branches=100",
+    "test": "node --test --experimental-test-coverage --test-coverage-lines=100 --test-coverage-functions=100 --test-coverage-branches=100",
     "posttest": "npm run lint"
   },
   "bugs": {
