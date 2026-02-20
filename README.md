@@ -1,6 +1,6 @@
 # @gar/promise-retry
 
-This is a fork of [promise-retry](https://npm.im/promise-retry) to keep its dependencies current. See notes at the end of this readme for what is different.
+This is a fork of [promise-retry](https://npm.im/promise-retry) to keep its dependencies current. See the [CHANGELOG.md](./CHANGELOG.md) for more info.
 
 Retries a function that returns a promise, leveraging the power of the [retry](https://github.com/tim-kos/node-retry) module to the promises world.
 
@@ -74,11 +74,3 @@ retry(function (retry, number) {
 ## License
 
 Released under the [MIT License](http://www.opensource.org/licenses/mit-license.php).
-
-## Changes from [promise-retry](https://npm.im/promise-retry)
-
-This package differs slightly from the one it was forked from:
- - It does not accept swapping of the function and options parameters.
- - It has a different `engines.node` setting.
- - The (untested) code allowing you to throw `EPROMISERETRY` errors from your own code was removed.
- - The main export from this module is not the promiseRetry function itself but an object with the function `promiseRetry` in it.
