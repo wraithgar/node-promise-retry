@@ -1,6 +1,6 @@
 {
   "name": "@gar/promise-retry",
-  "version": "2.0.1",
+  "version": "1.0.0",
   "description": "Retries a function that returns a promise, leveraging the power of the retry module.",
   "main": "index.js",
   "scripts": {
