@@ -20,7 +20,9 @@
     "lint": "npx standard",
     "lint:fix": "npx standard --fix",
     "test": "node --test --experimental-test-coverage --test-coverage-lines=100 --test-coverage-functions=100 --test-coverage-branches=100",
-    "posttest": "npm run lint"
+    "typelint": "npx -p typescript tsc ./lib/index.d.ts",
+    "posttest": "npm run lint",
+    "postlint": "npm run typelint"
   },
   "bugs": {
     "url": "https://github.com/wraithgar/node-promise-retry/issues/"
