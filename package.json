@@ -2,7 +2,10 @@
   "name": "@gar/promise-retry",
   "version": "1.0.0",
   "description": "Retries a function that returns a promise, leveraging the power of the retry module.",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
   "scripts": {
     "lint": "npx standard",
     "lint:fix": "npx standard --fix",
