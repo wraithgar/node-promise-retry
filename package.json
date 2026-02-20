@@ -1,17 +1,23 @@
 {
-  "name": "promise-retry",
-  "version": "2.0.1",
+  "name": "@gar/promise-retry",
+  "version": "1.0.0",
   "description": "Retries a function that returns a promise, leveraging the power of the retry module.",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
   "scripts": {
-    "test": "mocha --bail -t 10000"
+    "lint": "npx standard",
+    "lint:fix": "npx standard --fix",
+    "test": "node --test --experimental-test-coverage --test-coverage-lines=100 --test-coverage-functions=100 --test-coverage-branches=100",
+    "posttest": "npm run lint"
   },
   "bugs": {
-    "url": "https://github.com/IndigoUnited/node-promise-retry/issues/"
+    "url": "https://github.com/wraithgar/node-promise-retry/issues/"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/IndigoUnited/node-promise-retry.git"
+    "url": "git://github.com/wraithgar/node-promise-retry.git"
   },
   "keywords": [
     "retry",
@@ -20,18 +26,11 @@
     "repeat",
     "replay"
   ],
-  "author": "IndigoUnited <hello@indigounited.com> (http://indigounited.com)",
   "license": "MIT",
-  "devDependencies": {
-    "expect.js": "^0.3.1",
-    "mocha": "^8.0.1",
-    "sleep-promise": "^8.0.1"
-  },
   "dependencies": {
-    "err-code": "^2.0.2",
-    "retry": "^0.12.0"
+    "retry": "^0.13.1"
   },
   "engines": {
-    "node": ">=10"
+    "node": "^20.17.0 || >=22.9.0"
   }
 }
