@@ -1,6 +1,6 @@
 # @gar/promise-retry
 
-This is a fork of [promise-retry](https://npm.im/promise-retry) to keep its dependencies current.
+This is a fork of [promise-retry](https://npm.im/promise-retry) to keep its dependencies current. See notes at the end of this readme for what is different.
 
 Retries a function that returns a promise, leveraging the power of the [retry](https://github.com/tim-kos/node-retry) module to the promises world.
 
@@ -14,7 +14,7 @@ There's already some modules that are able to retry functions that return promis
 
 ## Usage
 
-### promiseRetry(fn, [options])
+### retry(fn, [options])
 
 Calls `fn` until the returned promise ends up fulfilled or rejected with an error different than a `retry` error.
 The `options` argument is an object which maps to the [retry](https://github.com/tim-kos/node-retry) module options:
@@ -32,10 +32,10 @@ If there are no retries left, it will throw the actual error passed to it.
 
 ## Example
 ```js
-var promiseRetry = require('promise-retry');
+const { retry } = require('@gar/promise-retry');
 
 // Simple example
-promiseRetry(function (retry, number) {
+retry(function (retry, number) {
     console.log('attempt number', number);
 
     return doSomething()
@@ -48,7 +48,7 @@ promiseRetry(function (retry, number) {
 });
 
 // Conditional example
-promiseRetry(function (retry, number) {
+retry(function (retry, number) {
     console.log('attempt number', number);
 
     return doSomething()
@@ -74,3 +74,11 @@ promiseRetry(function (retry, number) {
 ## License
 
 Released under the [MIT License](http://www.opensource.org/licenses/mit-license.php).
+
+## Changes from [promise-retry](https://npm.im/promise-retry)
+
+This package differs slightly from the one it was forked from:
+ - It does not accept swapping of the function and options parameters.
+ - It has a different `engines.node` setting.
+ - The (untested) code allowing you to throw `EPROMISERETRY` errors from your own code was removed.
+ - The main export from this module is not the promiseRetry function itself but an object with the function `promiseRetry` in it.

@@ -2,7 +2,7 @@ const t = require('node:test')
 const a = require('node:assert')
 const { setTimeout } = require('node:timers/promises')
 
-const promiseRetry = require('../')
+const { promiseRetry } = require('../')
 
 t.suite('promise-retry', () => {
   t.test('should call fn again if retry was called', async t => {
