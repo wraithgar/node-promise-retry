@@ -19,11 +19,12 @@ t.suite('promise-retry', () => {
     a.equal(count, 3)
   })
 
-  t.test('should call fn with the attempt number', async t => {
+  t.test('should call fn with the number and operation', async t => {
     let count = 0
-    const value = await promiseRetry(async (retry, number) => {
+    const value = await promiseRetry(async (retry, number, operation) => {
       count += 1
       a.equal(count, number)
+      a.equal(operation.attempts(), count)
       await setTimeout(10)
       if (count <= 2) {
         retry(new Error('foo'))
