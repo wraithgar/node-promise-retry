@@ -125,7 +125,4 @@ declare function promiseRetry<ResolutionType>(
     options?: OperationOptions,
 ): Promise<ResolutionType>;
 
-type mainExport = {
-    promiseRetry;
-}
-export = mainExport;
+export { promiseRetry };
