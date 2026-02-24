@@ -24,7 +24,7 @@ t.suite('promise-retry', () => {
     const value = await promiseRetry(async (retry, number, operation) => {
       count += 1
       a.equal(count, number)
-      a.equal(operation.attempts(), count)
+      a.equal(operation.attempts, count)
       await setTimeout(10)
       if (count <= 2) {
         retry(new Error('foo'))
