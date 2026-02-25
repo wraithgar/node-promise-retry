@@ -167,21 +167,22 @@ t.suite('retry', () => {
       })
     })
 
-    t.test('retry forever', (t, done) => {
-      const error = new Error('some error')
-      const operation = retry.operation({ retries: 3, forever: true, minTimeout: 1, maxTimeout: 10 })
+    t.test('retry forever does not grow errors infinitely', (t, done) => {
+      const retries = 3
+      const operation = retry.operation({ retries, forever: true, minTimeout: 1, maxTimeout: 10 })
       let attempts = 0
 
       operation.attempt(function (currentAttempt) {
         attempts++
         a.equal(currentAttempt, attempts)
-        if (attempts !== 6 && operation.retry(error)) {
+        if (attempts !== 12 && operation.retry(new Error(`error ${attempts}`))) {
           return
         }
 
-        a.strictEqual(attempts, 6)
+        a.strictEqual(attempts, 12)
         a.strictEqual(operation.attempts, attempts)
-        a.strictEqual(operation.mainError, error)
+        a.strictEqual(operation.mainError.message, `error ${retries}`)
+        a.equal(operation.errors.length, retries)
         done()
       })
     })
