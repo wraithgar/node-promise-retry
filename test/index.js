@@ -27,7 +27,7 @@ t.suite('promise-retry', () => {
       a.equal(operation.attempts, count)
       await setTimeout(10)
       if (count <= 2) {
-        retry(new Error('foo'))
+        return retry(new Error('foo'))
       }
       return 'final'
     }, { factor: 1, minTimeout: 100 })
@@ -95,7 +95,7 @@ t.suite('promise-retry', () => {
         await setTimeout(10)
         if (count < 2) {
           count += 1
-          retry(new Error('foo'))
+          return retry(new Error('foo'))
         }
         return 'final'
       }, { retries: 1, factor: 1, minTimeout: 100 }),
@@ -140,7 +140,7 @@ t.suite('promise-retry', () => {
         await setTimeout(10)
 
         if (count <= 2) {
-          retry()
+          return retry()
         }
         return 'final'
       }, { factor: 1, minTimeout: 100 })
