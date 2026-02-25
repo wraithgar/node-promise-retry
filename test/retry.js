@@ -186,6 +186,25 @@ t.suite('retry', () => {
       })
     })
 
+    t.test('infinite retries', (t, done) => {
+      const error = new Error('some error')
+      const operation = retry.operation({ retries: Infinity, minTimeout: 1, maxTimeout: 10 })
+      let attempts = 0
+
+      operation.attempt(function (currentAttempt) {
+        attempts++
+        a.equal(currentAttempt, attempts)
+        if (attempts !== 6 && operation.retry(error)) {
+          return
+        }
+
+        a.strictEqual(attempts, 6)
+        a.strictEqual(operation.attempts, attempts)
+        a.strictEqual(operation.mainError, error)
+        done()
+      })
+    })
+
     t.test('retry forever no retries', (t, done) => {
       const error = new Error('some error')
       const delay = 50
