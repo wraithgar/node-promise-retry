@@ -67,7 +67,7 @@ t.suite('retry', () => {
     })
 
     t.test('minTimeout > maxTimeout', async t => {
-      a.rejects(
+      await a.rejects(
         () => promiseRetry((retry, number, { timeouts }) => {}, { minTimeout: 100, maxTimeout: 1 }),
         { message: 'minTimeout is greater than maxTimeout' }
       )
