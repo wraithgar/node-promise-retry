@@ -41,17 +41,6 @@ type OperationOptions = {
     maxRetryTime?: number | undefined;
 } | number[];
 
-type AttemptTimeoutOptions = {
-    /**
-     * A timeout in milliseconds.
-     */
-    timeout?: number | undefined;
-    /**
-     * Callback to execute when the operation takes longer than the timeout.
-     */
-    callback?(): void;
-}
-
 type RetryOperation = {
     /**
      * Returns an array of all errors that have been passed to `retryOperation.retry()` so far.
@@ -72,12 +61,9 @@ type RetryOperation = {
     /**
      * Defines the function that is to be retried and executes it for the first time right away.
      *
-     * @param fn The function that is to be retried. `currentAttempt` represents the number of attempts
-     * callback has been executed so far.
-     * @param [timeoutOps.timeout] A timeout in milliseconds.
-     * @param [timeoutOps.callback] Callback to execute when the operation takes longer than the timeout.
+     * @param fn The function that is to be retried. `currentAttempt` represents the number of attempts callback has been executed so far.
      */
-    attempt(fn: (currentAttempt: number) => void, timeoutOps?: AttemptTimeoutOptions): void;
+    attempt(fn: (currentAttempt: number) => void): void;
 
     /**
      * Returns `false` when no `error` value is given, or the maximum amount of retries has been reached.
