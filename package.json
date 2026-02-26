@@ -39,9 +39,6 @@
     "replay"
   ],
   "license": "MIT",
-  "dependencies": {
-    "retry": "^0.13.1"
-  },
   "engines": {
     "node": "^20.17.0 || >=22.9.0"
   }
